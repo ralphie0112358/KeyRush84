@@ -202,13 +202,7 @@ export function createApp({ rootId = "app" } = {}) {
       audio.playMusic("play");
       return;
     }
-    if (
-      screenName === "menu" ||
-      screenName === "lesson" ||
-      screenName === "progress" ||
-      screenName === "settings" ||
-      screenName === "results"
-    ) {
+    if (screenName === "lesson") {
       audio.playMusic("home");
       return;
     }

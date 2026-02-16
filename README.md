@@ -36,30 +36,28 @@ npm run coverage
 ```
 
 Current baseline:
-- Test files: `10`
-- Tests: `44`
+- Test files: `12`
+- Tests: `51`
 
-## GitHub Pages (Later)
-This project is set up to be deployable to GitHub Pages.
-
-For a repo page like `https://<user>.github.io/keyrush84/`, build with:
-
-```bash
-GH_PAGES_BASE=/keyrush84/ npm run build
-```
-
-Output is generated in:
+## GitHub Pages (Auto Deploy from `master`)
+A GitHub Actions workflow is included at:
 
 ```text
-dist/
+.github/workflows/deploy-pages.yml
 ```
 
-Then publish the generated `dist/` folder using GitHub Pages.
+It runs on pushes to `master` and deploys `dist/` to GitHub Pages.
 
-Publish options:
-1. GitHub Actions workflow that builds and deploys `dist/` to Pages.
-2. Manual deploy by pushing `dist/` contents to a Pages branch.
+In your repo settings:
+1. Go to `Settings` -> `Pages`.
+2. Set `Source` to `GitHub Actions`.
+
+The workflow automatically sets the Vite base path to:
+
+```text
+/<repository-name>/
+```
 
 Notes:
-1. Keep `vite.config.js` base configurable through `GH_PAGES_BASE`.
-2. If repository name changes, update base path accordingly.
+1. `vite.config.js` uses `GH_PAGES_BASE` at build time.
+2. If your default branch changes from `master`, update the workflow trigger.
