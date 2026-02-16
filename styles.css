@@ -1,0 +1,469 @@
+:root {
+  --bg: #081225;
+  --panel: #101f3a;
+  --panel-2: #0b1730;
+  --text: #d6f1ff;
+  --muted: #8ea3bd;
+  --cyan: #28d7ff;
+  --magenta: #ff4db7;
+  --lime: #bdff4d;
+  --playfield-area-h: clamp(220px, 38vh, 320px);
+  --panel-pad: 14px;
+  --actions-h: 84px;
+  --playfield-button-gap: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--text);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(40, 215, 255, 0.1), transparent 35%),
+    radial-gradient(circle at 80% 15%, rgba(255, 77, 183, 0.12), transparent 35%),
+    linear-gradient(180deg, #060d1c 0%, #050915 100%);
+}
+
+.app-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+}
+
+.playfield-frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid rgba(40, 215, 255, 0.32);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(40, 215, 255, 0.16);
+}
+
+.playfield-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 16%, rgba(40, 215, 255, 0.12), transparent 30%),
+    radial-gradient(circle at 82% 18%, rgba(255, 77, 183, 0.14), transparent 32%),
+    linear-gradient(180deg, rgba(8, 16, 34, 0.96) 0%, rgba(4, 9, 20, 0.98) 100%);
+}
+
+.playfield-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(40, 215, 255, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(40, 215, 255, 0.05) 1px,
+      transparent 1px
+    );
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to top, black 40%, transparent 100%);
+}
+
+.screen-root {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 10px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.screen-chip {
+  color: var(--cyan);
+  font-size: 0.9rem;
+}
+
+.top-right-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.star-progress-button {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+  border-radius: 50%;
+  padding: 0;
+  border-color: rgba(255, 215, 107, 0.72);
+  background: rgba(54, 42, 12, 0.9);
+  color: #ffd76b;
+  box-shadow: 0 0 12px rgba(255, 215, 107, 0.26);
+}
+
+.global-levels-button {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  border-color: rgba(189, 255, 77, 0.72);
+  background: rgba(28, 44, 10, 0.94);
+  color: var(--lime);
+  z-index: 30;
+}
+
+.global-settings-button {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  border-color: rgba(40, 215, 255, 0.65);
+  background: rgba(7, 26, 52, 0.94);
+  color: var(--cyan);
+  z-index: 30;
+}
+
+.screen-panel {
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+  border: 1px solid rgba(40, 215, 255, 0.3);
+  border-radius: 14px;
+  padding: var(--panel-pad);
+  box-shadow: 0 0 24px rgba(40, 215, 255, 0.12);
+  min-height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.screen-panel h1,
+.screen-panel h2 {
+  margin-top: 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bottom-actions {
+  position: absolute;
+  left: var(--panel-pad);
+  right: var(--panel-pad);
+  bottom: var(--panel-pad);
+  min-height: var(--actions-h);
+  align-content: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0;
+}
+
+.playfield-block {
+  position: absolute;
+  left: var(--panel-pad);
+  right: var(--panel-pad);
+  bottom: calc(var(--panel-pad) + var(--actions-h) + var(--playfield-button-gap));
+  height: var(--playfield-area-h);
+}
+
+.playfield-countdown {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  font-size: clamp(5rem, 14vw, 8.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(214, 241, 255, 0.95);
+  text-shadow: 0 0 24px rgba(40, 215, 255, 0.55);
+}
+
+.playfield-countdown.ready-message {
+  font-size: clamp(2rem, 7vw, 4rem);
+}
+
+.playfield-hitline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 56px;
+  border-top: 2px solid rgba(255, 77, 183, 0.9);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.screen-top {
+  max-height: calc(
+    100% - var(--playfield-area-h) - var(--actions-h) - var(--playfield-button-gap) - (var(--panel-pad) * 2)
+  );
+  overflow: hidden;
+  display: grid;
+  gap: 6px;
+}
+
+.bottom-actions button {
+  white-space: nowrap;
+}
+
+button {
+  border: 1px solid rgba(40, 215, 255, 0.4);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #0e2246;
+  color: var(--text);
+  cursor: pointer;
+}
+
+button.primary {
+  border-color: rgba(189, 255, 77, 0.6);
+  background: #1a3a13;
+}
+
+button.accent {
+  border-color: rgba(255, 77, 183, 0.6);
+  background: #3a1330;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.level-grid button {
+  padding: 14px 8px;
+  text-align: center;
+}
+
+.level-grid button.selected {
+  border-color: rgba(189, 255, 77, 0.8);
+  background: #2d5b1c;
+}
+
+.level-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 8, 18, 0.72);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  z-index: 20;
+}
+
+.level-picker-modal {
+  width: min(560px, 96vw);
+  background: linear-gradient(180deg, #102547 0%, #0b1a35 100%);
+  border: 1px solid rgba(40, 215, 255, 0.35);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 0 30px rgba(40, 215, 255, 0.2);
+}
+
+.level-picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.level-picker-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.menu-playfield-preview {
+  position: relative;
+  height: 100%;
+  border: 1px solid rgba(40, 215, 255, 0.28);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(40, 215, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(7, 16, 34, 0.92), rgba(5, 10, 22, 0.95));
+}
+
+.menu-preview-meta {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.menu-preview-text {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  color: rgba(214, 241, 255, 0.92);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px rgba(40, 215, 255, 0.25);
+}
+
+.gameplay-panel {
+  max-width: 100%;
+  position: relative;
+}
+
+.gameplay-hud {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.gameplay-hud span {
+  border: 1px solid rgba(40, 215, 255, 0.32);
+  background: rgba(11, 23, 48, 0.8);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+}
+
+.gameplay-canvas {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(40, 215, 255, 0.35);
+  border-radius: 10px;
+  display: block;
+  background: #081225;
+}
+
+.menu-subline {
+  margin: 4px 0 0;
+}
+
+.menu-panel h1 {
+  text-align: center;
+  margin: 0;
+}
+
+.lesson-compact {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.gameplay-feedback {
+  margin: 0;
+}
+
+.screen-top p {
+  margin: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.settings-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid rgba(40, 215, 255, 0.28);
+  background: rgba(11, 23, 48, 0.7);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.settings-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-stepper button {
+  min-width: 34px;
+  padding: 6px 10px;
+}
+
+.progress-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-size: 0.78rem;
+  table-layout: fixed;
+}
+
+.progress-table th,
+.progress-table td {
+  border: 1px solid rgba(40, 215, 255, 0.28);
+  padding: 5px 6px;
+  text-align: left;
+}
+
+.progress-table th {
+  background: rgba(11, 23, 48, 0.85);
+  color: var(--cyan);
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 10px;
+  }
+}

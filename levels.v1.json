@@ -1,0 +1,306 @@
+{
+  "version": "v1",
+  "levelAccess": {
+    "mode": "all_available",
+    "lesson": {
+      "recommended": true,
+      "skippable": true
+    }
+  },
+  "defaults": {
+    "stageTotalNotes": 72,
+    "lessonDrill": {
+      "notes": 8,
+      "durationSec": 10,
+      "passAccuracy": 0.85,
+      "passStreak": 6
+    },
+    "stagePass": {
+      "minAccuracy": 0.8,
+      "minMaxStreak": 15,
+      "minTargetKeyHitRate": 0.7
+    },
+    "postureTips": [
+      "Keep wrists neutral and relaxed.",
+      "Keep fingers curved with a light touch.",
+      "Return to home row after each press.",
+      "Keep eyes on the screen."
+    ]
+  },
+  "fingerMapReference": {
+    "a": "left pinky",
+    "s": "left ring",
+    "d": "left middle",
+    "f": "left index",
+    "j": "right index",
+    "k": "right middle",
+    "l": "right ring",
+    ";": "right pinky",
+    "q": "left pinky",
+    "w": "left ring",
+    "e": "left middle",
+    "r": "left index",
+    "u": "right index",
+    "i": "right middle",
+    "o": "right ring",
+    "p": "right pinky"
+  },
+  "levels": [
+    {
+      "id": 1,
+      "title": "F + J (Index Anchors)",
+      "goal": "Build confidence on anchor keys with index fingers.",
+      "keysPrimary": ["f", "j"],
+      "keysReview": [],
+      "fingerMap": {
+        "f": "left index",
+        "j": "right index"
+      },
+      "lesson": {
+        "expectation": "Mostly simple alternation with short doubles.",
+        "patterns": ["f j f j", "ff jj", "fjfj", "jffj"]
+      },
+      "stage": {
+        "durationSec": 30,
+        "targetNps": 1.2,
+        "patternPool": ["f j f j", "ff jj", "fjjf", "jffj", "fjfj"]
+      }
+    },
+    {
+      "id": 2,
+      "title": "D + K (Middle Fingers)",
+      "goal": "Add middle-finger control while keeping index anchors stable.",
+      "keysPrimary": ["d", "k"],
+      "keysReview": ["f", "j"],
+      "fingerMap": {
+        "d": "left middle",
+        "k": "right middle",
+        "f": "left index",
+        "j": "right index"
+      },
+      "lesson": {
+        "expectation": "Pairs and transitions between middle and index keys.",
+        "patterns": ["d k d k", "dd kk", "d f j k", "dkfj"]
+      },
+      "stage": {
+        "durationSec": 35,
+        "targetNps": 1.5,
+        "patternPool": ["d k d k", "dd kk", "d f j k", "f d j k", "dkfj"]
+      }
+    },
+    {
+      "id": 3,
+      "title": "S + L (Ring Fingers)",
+      "goal": "Train ring-finger accuracy without collapsing hand posture.",
+      "keysPrimary": ["s", "l"],
+      "keysReview": ["d", "k", "f", "j"],
+      "fingerMap": {
+        "s": "left ring",
+        "l": "right ring",
+        "d": "left middle",
+        "k": "right middle",
+        "f": "left index",
+        "j": "right index"
+      },
+      "lesson": {
+        "expectation": "Alternating ring keys plus short review bursts.",
+        "patterns": ["s l s l", "ss ll", "s d k l", "slfj"]
+      },
+      "stage": {
+        "durationSec": 40,
+        "targetNps": 1.8,
+        "patternPool": ["s l s l", "ss ll", "s d k l", "f s j l", "slfj"]
+      }
+    },
+    {
+      "id": 4,
+      "title": "A + ; (Pinky Keys)",
+      "goal": "Introduce pinky precision while maintaining home-row shape.",
+      "keysPrimary": ["a", ";"],
+      "keysReview": ["s", "l", "d", "k", "f", "j"],
+      "fingerMap": {
+        "a": "left pinky",
+        ";": "right pinky",
+        "s": "left ring",
+        "l": "right ring",
+        "d": "left middle",
+        "k": "right middle",
+        "f": "left index",
+        "j": "right index"
+      },
+      "lesson": {
+        "expectation": "Pinky taps with frequent return to anchors.",
+        "patterns": ["a ; a ;", "aa ;;", "a s l ;", "afj;"]
+      },
+      "stage": {
+        "durationSec": 45,
+        "targetNps": 2.0,
+        "patternPool": ["a ; a ;", "aa ;;", "a s l ;", "a d k ;", "afj;"]
+      }
+    },
+    {
+      "id": 5,
+      "title": "Home Row Mix",
+      "goal": "Consolidate full home-row control across both hands.",
+      "keysPrimary": ["a", "s", "d", "f", "j", "k", "l", ";"],
+      "keysReview": [],
+      "fingerMap": {
+        "a": "left pinky",
+        "s": "left ring",
+        "d": "left middle",
+        "f": "left index",
+        "j": "right index",
+        "k": "right middle",
+        "l": "right ring",
+        ";": "right pinky"
+      },
+      "lesson": {
+        "expectation": "Home-row runs and mirrored hand patterns.",
+        "patterns": ["a s d f j k l ;", "f d s a ; l k j", "asdf", "jkl;"]
+      },
+      "stage": {
+        "durationSec": 50,
+        "targetNps": 2.2,
+        "patternPool": ["a s d f j k l ;", "f d s a ; l k j", "asdf jkl;", "fjdk sla;", "asdj fkl;"]
+      }
+    },
+    {
+      "id": 6,
+      "title": "E + I (Middle Reach Up)",
+      "goal": "Add top-row reach with middle fingers while keeping rhythm.",
+      "keysPrimary": ["e", "i"],
+      "keysReview": ["d", "k", "f", "j", "s", "l"],
+      "fingerMap": {
+        "e": "left middle",
+        "i": "right middle",
+        "d": "left middle",
+        "k": "right middle",
+        "f": "left index",
+        "j": "right index",
+        "s": "left ring",
+        "l": "right ring"
+      },
+      "lesson": {
+        "expectation": "Up-reach taps followed by clean return to home row.",
+        "patterns": ["e i e i", "ee ii", "e d k i", "efji"]
+      },
+      "stage": {
+        "durationSec": 55,
+        "targetNps": 2.4,
+        "patternPool": ["e i e i", "ee ii", "e d k i", "f e j i", "efji"]
+      }
+    },
+    {
+      "id": 7,
+      "title": "R + U (Index Reach Up)",
+      "goal": "Train index-finger top-row reaches at higher note density.",
+      "keysPrimary": ["r", "u"],
+      "keysReview": ["f", "j", "d", "k", "e", "i"],
+      "fingerMap": {
+        "r": "left index",
+        "u": "right index",
+        "f": "left index",
+        "j": "right index",
+        "d": "left middle",
+        "k": "right middle",
+        "e": "left middle",
+        "i": "right middle"
+      },
+      "lesson": {
+        "expectation": "Fast index reach/return cycles and anchor checks.",
+        "patterns": ["r u r u", "rr uu", "r f j u", "rdei ukjf"]
+      },
+      "stage": {
+        "durationSec": 60,
+        "targetNps": 2.7,
+        "patternPool": ["r u r u", "rr uu", "r f j u", "r d e f u j i k", "rufj"]
+      }
+    },
+    {
+      "id": 8,
+      "title": "W + O (Ring Reach Up)",
+      "goal": "Expand ring-finger top-row control with consistent timing.",
+      "keysPrimary": ["w", "o"],
+      "keysReview": ["s", "l", "e", "i", "d", "k"],
+      "fingerMap": {
+        "w": "left ring",
+        "o": "right ring",
+        "s": "left ring",
+        "l": "right ring",
+        "e": "left middle",
+        "i": "right middle",
+        "d": "left middle",
+        "k": "right middle"
+      },
+      "lesson": {
+        "expectation": "Ring-finger reach patterns with mixed review bridges.",
+        "patterns": ["w o w o", "ww oo", "w s l o", "weio"]
+      },
+      "stage": {
+        "durationSec": 65,
+        "targetNps": 3.0,
+        "patternPool": ["w o w o", "ww oo", "w s l o", "w e i o", "wdsl okli"]
+      }
+    },
+    {
+      "id": 9,
+      "title": "Q + P (Pinky Reach Up)",
+      "goal": "Strengthen pinky reaches and reduce finger substitution.",
+      "keysPrimary": ["q", "p"],
+      "keysReview": ["a", ";", "w", "o", "s", "l"],
+      "fingerMap": {
+        "q": "left pinky",
+        "p": "right pinky",
+        "a": "left pinky",
+        ";": "right pinky",
+        "w": "left ring",
+        "o": "right ring",
+        "s": "left ring",
+        "l": "right ring"
+      },
+      "lesson": {
+        "expectation": "Pinky up-reach with deliberate return to home row.",
+        "patterns": ["q p q p", "qq pp", "q a ; p", "qwop"]
+      },
+      "stage": {
+        "durationSec": 70,
+        "targetNps": 3.2,
+        "patternPool": ["q p q p", "qq pp", "q a ; p", "q w o p", "qasd jklp"]
+      }
+    },
+    {
+      "id": 10,
+      "title": "Top + Home Mix",
+      "goal": "Integrate all learned keys in sustained rhythm play.",
+      "keysPrimary": ["q", "w", "e", "r", "u", "i", "o", "p", "a", "s", "d", "f", "j", "k", "l", ";"],
+      "keysReview": [],
+      "fingerMap": {
+        "q": "left pinky",
+        "w": "left ring",
+        "e": "left middle",
+        "r": "left index",
+        "u": "right index",
+        "i": "right middle",
+        "o": "right ring",
+        "p": "right pinky",
+        "a": "left pinky",
+        "s": "left ring",
+        "d": "left middle",
+        "f": "left index",
+        "j": "right index",
+        "k": "right middle",
+        "l": "right ring",
+        ";": "right pinky"
+      },
+      "lesson": {
+        "expectation": "Mixed lanes, alternating hands, and short speed bursts.",
+        "patterns": ["q w e r u i o p", "a s d f j k l ;", "q a w s e d r f", "u j i k o l p ;"]
+      },
+      "stage": {
+        "durationSec": 90,
+        "targetNps": 3.5,
+        "patternPool": ["q w e r u i o p", "a s d f j k l ;", "q a w s e d r f", "u j i k o l p ;", "asdf qwer ujkl iop;"]
+      }
+    }
+  ]
+}
