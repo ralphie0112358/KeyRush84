@@ -34,9 +34,7 @@ jobs:
         run: npm test
 
       - name: Build for Pages
-        run: |
-          echo "GH_PAGES_BASE=/${{ github.event.repository.name }}/" >> "$GITHUB_ENV"
-          npm run build
+        run: GH_PAGES_BASE=/${{ github.event.repository.name }}/ npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
