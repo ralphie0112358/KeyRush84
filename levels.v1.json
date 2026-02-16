@@ -8,7 +8,7 @@
     }
   },
   "defaults": {
-    "stageTotalNotes": 72,
+    "stageTotalNotes": 36,
     "lessonDrill": {
       "notes": 8,
       "durationSec": 10,
