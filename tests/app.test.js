@@ -34,9 +34,6 @@ describe("app routing and actions", () => {
     app.init();
 
     expect(app.store.getState().app.screen).toBe("menu");
-    expect(document.querySelector("[data-ui='screenName']").textContent).toBe(
-      "home"
-    );
     expect(document.activeElement?.textContent?.trim()).toBe("Start");
   });
 
@@ -51,9 +48,6 @@ describe("app routing and actions", () => {
     expect(state.app.selectedLevelId).toBe(1);
     expect(state.session.mode).toBe("lesson");
     expect(state.app.screen).toBe("lesson");
-    expect(document.querySelector("[data-ui='screenName']").textContent).toBe(
-      "lesson"
-    );
   });
 
   it("sets level from picker and starts lesson for selected level", () => {

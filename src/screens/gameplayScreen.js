@@ -39,7 +39,6 @@ export const gameplayScreen = {
     const chart = buildChartFromLevel(selectedLevel, {
       totalNotes: fixedStageTotalNotes
     });
-    const noteTrack = createNoteTrack(chart);
     const targetKeys = new Set(selectedLevel.keysPrimary);
     const stagePassThresholds = state.levels.defaults?.stagePass;
     const stageDurationMs = selectedLevel.stage.durationSec * 1000;
@@ -119,6 +118,12 @@ export const gameplayScreen = {
       canvas: ui.canvas,
       notes: chart
     });
+    const visualGoodWindowMs = Math.round(canvasRenderer.getHitboxTimingWindowMs());
+    const stageWindows = {
+      perfect: Math.max(60, Math.round(visualGoodWindowMs * 0.5)),
+      good: Math.max(120, visualGoodWindowMs)
+    };
+    const noteTrack = createNoteTrack(chart, stageWindows);
 
     function stopActiveRun() {
       countdownTimers.forEach((timerId) => clearTimeout(timerId));
@@ -209,7 +214,8 @@ export const gameplayScreen = {
       ctx.audio?.playMusic("home");
       ctx.audio?.playSfx(summary.cleared ? "stagePass" : "stageFail");
       canvasRenderer.drawCenteredSummary(summary);
-      (ui.postNext.disabled ? ui.postReplay : ui.postNext)?.focus();
+      const preferredButton = summary.cleared ? ui.postNext : ui.postReplay;
+      (preferredButton?.disabled ? ui.postReplay : preferredButton)?.focus();
     }
 
     function processResult(result) {

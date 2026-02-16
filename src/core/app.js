@@ -15,7 +15,6 @@ function createShell(root) {
       <header class="top-bar">
         <div class="brand">KeyRush84</div>
         <div class="top-right-controls">
-          <div class="screen-chip">Screen: <span data-ui="screenName">home</span></div>
           <button
             class="star-progress-button"
             data-action="go-screen"
@@ -193,7 +192,6 @@ export function createApp({ rootId = "app" } = {}) {
   let activeScreenName = null;
   let screenContainer = null;
   let overlayContainer = null;
-  let screenNameNode = null;
   let rootNode = null;
   let initialized = false;
 
@@ -271,7 +269,6 @@ export function createApp({ rootId = "app" } = {}) {
     nextScreen.mount(screenContainer, { store, audio });
     renderLevelPickerOverlay(state);
     syncMusicForScreen(nextScreenName);
-    screenNameNode.textContent = nextScreenName === "menu" ? "home" : nextScreenName;
     activeScreen = nextScreen;
     activeScreenName = nextScreenName;
     focusPreferredControl();
@@ -543,7 +540,6 @@ export function createApp({ rootId = "app" } = {}) {
 
     screenContainer = root.querySelector("[data-ui='screenRoot']");
     overlayContainer = root.querySelector("[data-ui='overlayRoot']");
-    screenNameNode = root.querySelector("[data-ui='screenName']");
     root.addEventListener("click", handleAction);
     root.addEventListener("keydown", handleKeydown);
     initialized = true;
@@ -584,7 +580,6 @@ export function createApp({ rootId = "app" } = {}) {
     activeScreenName = null;
     screenContainer = null;
     overlayContainer = null;
-    screenNameNode = null;
     rootNode = null;
   }
 
